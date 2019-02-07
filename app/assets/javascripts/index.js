@@ -4,12 +4,12 @@ $(function () {
   employeeLoginForm()
   employerLoginForm()
   // employerNewForm() 
-  // employeeNewForm() 
+
   employeeNewForm()
   jobIndex()
   $('a.navbar-brand#root').on('click', (e) => rootPage(e));
   // $('span#new_employee').on("click", employeeNewForm);
-  $('#new_employee_form').on("submit", submitEmployeeNewForm )
+  // $('#new_employee_form').on("submit", submitEmployeeNewForm )
 
 })
 
@@ -18,8 +18,9 @@ $(function () {
 
 
 var employeeNewForm = () => {
-  $('span#new_employee').on("click", function (e) {
+  $('a#new_employee').on("click", function (e) {
     e.preventDefault()
+
     clearWelcome()
     $.ajax({
       url: 'http://0.0.0.0:3000/employees/new',
@@ -27,36 +28,37 @@ var employeeNewForm = () => {
       dataType: 'html'
     }).success(function (response) {
       $('div#app-div-id').html(response)
-      // submitEmployeeNewForm();
+      submitEmployeeNewForm();
     })
   })
 }
 
 const submitEmployeeNewForm = (e) => {
-  // $('#new_employee_form').on("submit", function(e) {
-
+  $('form#new_employee_form').on("submit", function (e) {
     e.preventDefault()
-    debugger;
     $.ajax({
       type: "POST",
-      dataType: $(this).serialize(),
+      data: $(this).serialize(),
+      dataType: 'json',
       url: this.action
     }).success(function (response) {
-      debugger
-      alert("you submited the form")
-      $('div#app-div-id').html(response)
+
+      let employee = new Employee(response)
+      let employeeHtml = employee.employeeHTML()
+      deleteNewEmployeeForm()
+      $('div#employee-div-id').html(employeeHtml)
 
     })
-  // })
+  })
 }
 
 const employeeLoginForm = () => {
   $('a#employee-login').on("click", function (e) {
-    
+
     e.preventDefault()
     // debugger
     clearWelcome()
-    
+
     $.ajax({
       url: 'http://0.0.0.0:3000/signin_employee',
       method: 'GET',
@@ -65,12 +67,15 @@ const employeeLoginForm = () => {
       $('div#app-div-id').html(response);
     })
   })
- } 
+}
 
 
 
 function clearWelcome() {
   $('div#the-welcome-page').html("")
+}
+function deleteNewEmployeeForm() {
+  $('#new_employee_form').html("")
 }
 
 var rootPage = (e) => {
@@ -82,4 +87,23 @@ var rootPage = (e) => {
   }).success(function (response) {
     $('body').html(response)
   })
+}
+
+// define Employee class
+class Employee {
+  constructor(obj) {
+    this.name = obj.name;
+    this.email = obj.email;
+    this.profession = obj.profession;
+  }
+}
+
+Employee.prototype.employeeHTML = function () {
+  return (`
+    <div class='employee-show'>
+		<h3>${this.name}</h3>
+    <p> ${this.email}</p>
+    <p> ${this.profession}</p>
+		</div>
+  `)
 }
