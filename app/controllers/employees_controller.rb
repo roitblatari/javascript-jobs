@@ -5,25 +5,27 @@ class EmployeesController < ApplicationController
   # before_action :logged_in
   # skip_before_action :logged_in, only: [:new, :create]
 
-  def new
+	def new
+		
     @employee = Employee.new
-    # render :new, layout: false
-      respond_to do |format|
-        format.html {render :new, layout: false}
-        format.json {render json: @employee}
-      end 
+    render :new, layout: false
+		# respond_to do |format|
+		# 	format.html {render :new, layout: false}
+		# 	format.json {render json: @}
+		# end 
   end
 
-  def create
+	def create
     @employee = Employee.new(employee_params)
 
     if @employee.save
       session[:employee_id] = @employee.id
-      employee = Employee.find_by(id: params[:id])
-      # redirect_to employee_path(@employee)
+      
+			# redirect_to employee_path(@employee)
+			
       respond_to do |format|
         format.html {render 'employees/show', layout: false}
-        format.json {render json: employee_path(@employee)}
+        format.json {render json: @employee}
       end
     else
       render :new
