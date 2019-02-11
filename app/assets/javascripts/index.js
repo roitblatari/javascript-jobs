@@ -4,9 +4,9 @@ $(function () {
   employeeLoginForm()
   employerLoginForm()
   // employerNewForm() 
-
   employeeNewForm()
   jobIndex()
+  pastJobIndex(å)
   $('a.navbar-brand#root').on('click', (e) => rootPage(e));
   // $('span#new_employee').on("click", employeeNewForm);
   // $('#new_employee_form').on("submit", submitEmployeeNewForm )
