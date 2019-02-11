@@ -53,7 +53,12 @@ class SessionController < ApplicationController
     if @employee != nil && @employee.authenticate(params[:password])
       session[:employee_id] = @employee.id
       # binding.pry
-      redirect_to employee_path(@employee)
+      # redirect_to employee_path(@employee)
+       respond_to do |format|
+        format.html {render 'employees/show', layout: false}
+        # Binding.pry
+        format.json { render json: @employee }
+       end
     else
       flash[:message] = "Incorrect Email or Password."
       render :new_employee
