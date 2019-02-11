@@ -1,4 +1,8 @@
 // 
+$(function () {
+  console.log("app/assets/javascripts/employee.js")
+})
+
 //////////////// Employee /////////////////////
 
 const employeeLoginForm = () => {
@@ -54,22 +58,26 @@ const submitEmployeeNewForm = (e) => {
   })
 }
 
-
 const submitEmployeeLoginForm = () => {
-  $('#new_session_form').on('submit', function (e) {
+  $('form#new_session_form').on("submit", function (e) {
+  //  debugger
     e.preventDefault()
+    
     $.ajax({
       type: "POST",
       data: $(this).serialize(),
       dataType: 'json',
-      url: this.action
+      url: this.action //'session/create_employee'
     }).success(function (response) {
-
+debugger
       let employee = new Employee(response)
       let employeeHtml = employee.employeeHTML()
-      deleteNewEmployeeForm()
+      deleteLoginEmployeeForm()
       $('div#employee-div-id').html(employeeHtml)
 
+    }).error(function (a,err, errObj ) {
+      debugger
+      // console.log("err:" , err)
     })
     
   })
@@ -82,6 +90,9 @@ function clearWelcome() {
 }
 function deleteNewEmployeeForm() {
   $('#new_employee_form').html("")
+}
+function deleteLoginEmployeeForm() {
+  $('#new_session_form').html("")
 }
 
 var rootPage = (e) => {
