@@ -7,7 +7,7 @@ class EmployersController < ApplicationController
 
   def new
     @employer = Employer.new
-    render :new, layout: false 
+    render :new 
   end
 
   def create
