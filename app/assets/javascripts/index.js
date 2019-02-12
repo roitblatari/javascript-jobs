@@ -6,7 +6,8 @@ $(function () {
   // employerNewForm() 
   employeeNewForm()
   jobIndex()
-  pastJobIndex(å)
+  
+  // $('button#past-jobs-employee-jobs-path').on("click", pastJobIndex(e)); 
   $('a.navbar-brand#root').on('click', (e) => rootPage(e));
   // $('span#new_employee').on("click", employeeNewForm);
   // $('#new_employee_form').on("submit", submitEmployeeNewForm )
@@ -15,6 +16,7 @@ $(function () {
 
 
 // //////////////// Employee /////////////////////
+// 
 
 
 // var employeeNewForm = () => {
@@ -120,3 +122,6 @@ $(function () {
     
 //   `)
 // }
+
+
+// 
