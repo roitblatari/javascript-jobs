@@ -22,10 +22,10 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 
     <% if @current_user.class == Employer %>
-      <%= link_to "Home", employer_path(@current_user), class: "navbar-brand"%>
+      <%= link_to "Home", employer_path(@current_user), class: "navbar-brand", id: "home"  %>
     <% end %>
     <% if @current_user.class == Employee %>
-      <%= link_to "Home", employee_path(@current_user), class: "navbar-brand"%>
+      <%= link_to "Home", employee_path(@current_user), class: "navbar-brand", id: "home"%>
     <% end %>
       <div  <% if @current_user == nil %> >
               <%= link_to "Employer's Login", signin_employer_path, id: "employer-login", class: "btn btn-info"%>
@@ -56,6 +56,7 @@
       <div id="app-div-id" >
        AJAX app-div-id
       </div>
+
 
         <%= yield %>
 
