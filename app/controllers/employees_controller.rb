@@ -27,6 +27,7 @@ class EmployeesController < ApplicationController
         format.html { render 'employees/show', layout: false }
         format.json { render json: @employee }
       end
+      
     else
       render :new
     end
