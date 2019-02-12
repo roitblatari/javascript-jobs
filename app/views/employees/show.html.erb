@@ -10,6 +10,6 @@
 <button type="button" class="btn btn-light">
   <%= link_to 'Upcoming Jobs', upcoming_jobs_employee_jobs_path(@employee) %>
 </button>
-<button type="button" class="btn btn-light">
-  <%= link_to 'Past Jobs', past_jobs_employee_jobs_path(@employee) %>
+<button type="button" class="btn btn-light" >
+  <%= link_to 'Past Jobs', past_jobs_employee_jobs_path(@employee), id: "past-jobs-employee-jobs-path" %>
 </button>
