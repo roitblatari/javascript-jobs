@@ -1,4 +1,3 @@
-// 
 $(function () {
   console.log("app/assets/javascripts/employee.js")
 })
@@ -60,26 +59,27 @@ const submitEmployeeNewForm = (e) => {
 
 const submitEmployeeLoginForm = () => {
   $('form#new_session_form').on("submit", function (e) {
-  //  debugger
+    //  debugger
     e.preventDefault()
-    
+
     $.ajax({
       type: "POST",
       data: $(this).serialize(),
       dataType: 'json',
       url: this.action //'session/create_employee'
     }).success(function (response) {
-debugger
+      // debugger
       let employee = new Employee(response)
       let employeeHtml = employee.employeeHTML()
       deleteLoginEmployeeForm()
       $('div#employee-div-id').html(employeeHtml)
-
-    }).error(function (a,err, errObj ) {
+      pastJobsIndex()
+      upcomingJobs()
+    }).error(function (a, err) {
       debugger
       // console.log("err:" , err)
     })
-    
+
   })
 }
 
@@ -87,6 +87,9 @@ debugger
 
 function clearWelcome() {
   $('div#the-welcome-page').html("")
+}
+function clearAppDivId() {
+  $('div#app-div-id').html("")
 }
 function deleteNewEmployeeForm() {
   $('#new_employee_form').html("")
@@ -102,7 +105,7 @@ var rootPage = (e) => {
     method: 'GET',
     dataType: 'html'
   }).success(function (response) {
-    $('body').html(response)
+    $('div#employee-div-id').html(response)
   })
 }
 
@@ -115,19 +118,22 @@ class Employee {
     this.id = obj.id;
   }
 }
-
+{/* <a href="/employees/${this.id}/jobs/past_jobs" class="btn btn-light" id="past-jobs-employee-jobs-path" >Past Jobs</a> */}
 Employee.prototype.employeeHTML = function () {
   return (`
     <div class='employee-show'>
+    <p> ${this.id}</p>
 		<h3>${this.name}</h3>
     <p> ${this.email}</p>
     <p> ${this.profession}</p>
+   
 
-    <button type="button" class="btn btn-light" id="past-jobs-employee-jobs-path">
-      <a href="/employees/${this.id}/jobs/past_jobs">Past Jobs</a>
+    <button type="button" class="btn btn-light">
+    <a id="past-jobs-employee" href="/employees/${this.id}/jobs/past_jobs">Past Jobs</a> 
+   
     </button>
-    <button type="button" class="btn btn-light" id="past-jobs-employee-jobs-path">
-      <a href="/employees/${this.id}/jobs/upcoming_jobs">Upcoming Jobs</a>
+    <button type="button" class="btn btn-light">
+      <a id="upcoming-jobs-employee" href="/employees/${this.id}/jobs/upcoming_jobs"  >Upcoming Jobs</a>
     </button>
 
 
