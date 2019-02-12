@@ -50,6 +50,10 @@ class JobsController < ApplicationController
   def past_jobs
     @employee = Employee.find_by(id: params[:employee_id])
     @jobs = Job.past_jobs
+      respond_to do |f|
+      f.html { render :index}
+      f.json { render json: @jobs}
+    end
   end
 
   def my_created_jobs
