@@ -9,6 +9,7 @@ $(function () {
   
   // $('button#past-jobs-employee-jobs-path').on("click", pastJobIndex(e)); 
   $('a.navbar-brand#root').on('click', (e) => rootPage(e));
+  $('a#home').on("click", (e) =>  home(e))
   // $('span#new_employee').on("click", employeeNewForm);
   // $('#new_employee_form').on("submit", submitEmployeeNewForm )
 
