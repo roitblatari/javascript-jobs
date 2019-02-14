@@ -1,6 +1,6 @@
 
 const jobIndex = () => {
-  $('a#created-jobs').on("click", function (e) {
+  // $('a#created-jobs').on("click", function (e) {
     e.preventDefault()
     debugger
     $.ajax({
@@ -16,11 +16,11 @@ const jobIndex = () => {
         $('#app-div-id').append(jobDataHtml)    // append jobDataHtml to the DOM in the div you specified
       })
     })
-  })
+  // })
 }
 
 const upcomingJobs = () => {
-  $('#upcoming-jobs-employee').on("click", function (e) {
+  $('#upcoming-jobs').on("click", function (e) {
     e.preventDefault()
     // debugger
     $.ajax({
@@ -28,8 +28,8 @@ const upcomingJobs = () => {
       method: 'GET',
       dataType: 'json'
     }).success(function (response) {
-      // debugger
       clearAppDivId()
+      // debugger
       let jobData
       response.map(job => {
         jobData = new Job(job);
@@ -54,7 +54,6 @@ debugger
       dataType: 'json'
     }).success(function (resp) {// json data arrived    resp is an array
       let jobData
-      clearAppDivId()
       resp.map(j => {
         jobData = new Job(j) // jobData is an instance of Job
         // jobData.jobHTML() // call .jobHTML() on the instance of Job (jobData) to create the html string that we can append to the DOM 
@@ -92,4 +91,9 @@ Job.prototype.jobHTML = function () {
     <p> ${this.state}</p>
     <p> ${this.date}</p>
   `)
+}
+
+
+function clearAppDivId() {
+  $('div#app-div-id').html("")
 }
