@@ -27,16 +27,18 @@
     <% if @current_user.class == Employee %>
       <%= link_to "Home", employee_path(@current_user), class: "navbar-brand", id: "home"%>
     <% end %>
-      <div  <% if @current_user == nil %> >
+      <div  > <%# if @current_user == nil %> 
               <%= link_to "Employer's Login", signin_employer_path, id: "employer-login", class: "btn btn-info"%>
               <%= link_to "Employee's Login", signin_employee_path, id: "employee-login", class: "btn btn-info"%>
-            <% end  %>
-            <div  <% if @current_user  %> >
-                  <%= link_to "Logout", logout_path,  class: "navbar-brand" %>
-            <% end %>
+              <%= link_to "Logout", logout_path,  class: "btn btn-info" %>
+            <%# end  %>
+      <div  ><%# if @current_user  %> 
+            <%#= link_to "Logout", logout_path,  class: "navbar-brand" %>
+            <%# end %>
       </div>
-
+   
     </div>
+    <%# <%= link_to "Logout", logout_path,  class: "btn btn-info" %> 
   </div>
 </nav>
 <!-- ///////////////////////////  -->
