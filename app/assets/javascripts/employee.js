@@ -135,7 +135,7 @@
 //     this.id = obj.id;
 //   }
 // }
-// {/* <a href="/employees/${this.id}/jobs/past_jobs" class="btn btn-light" id="past-jobs-employee-jobs-path" >Past Jobs</a> */}
+// {/* <a href="/employees/${this.id}/jobs/past_jobs" class="btn btn-light" id="past-jobs-jobs-path" >Past Jobs</a> */}
 // Employee.prototype.employeeHTML = function () {
 //   return (`
 //     <div class='employee-show'>
@@ -146,7 +146,7 @@
    
 
 //     <button type="button" class="btn btn-light">
-//     <a id="past-jobs-employee" href="/employees/${this.id}/jobs/past_jobs">Past Jobs</a> 
+//     <a id="past-jobs" href="/employees/${this.id}/jobs/past_jobs">Past Jobs</a> 
    
 //     </button>
 //     <button type="button" class="btn btn-light">
