@@ -5,10 +5,24 @@
 <div id="the-welcome-page">
 <br><br>
 <h1>Welcome.</h1><br>
-<h2> Are You an <span id="new_employer"> <%= link_to 'Employer', new_employer_path %> </span> 
+<h2> Are You an <span > <%= link_to 'Employer', new_employer_path, id: "new_employer" %> </span> 
 or an <span> <%= link_to 'Employee', new_employee_path, id: "new_employee" %></span> ? </h2>
 
 <br><br><br><br><br><br><br>
 
 <br>
 </div>
+
+<div>
+
+<%# <h1>Please sign up</h1>
+<form id="employee_new_form">
+  Name: <br/>
+  <input type="text" name="name"><br>
+  Email: <br/>
+  <input type="email" name="email"><br>
+  Profession: <br/>
+  <input type="text" name="profession"><br>
+  <button type='submit'>Submit</button>
+</form>
+</div> %>
