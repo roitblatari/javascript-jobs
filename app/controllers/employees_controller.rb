@@ -6,7 +6,6 @@ class EmployeesController < ApplicationController
   # skip_before_action :logged_in, only: [:new, :create]
 
 	def new
-		
     @employee = Employee.new
     render :new, layout: false
 		# respond_to do |format|
@@ -17,17 +16,13 @@ class EmployeesController < ApplicationController
 
 	def create
     @employee = Employee.new(employee_params)
-
     if @employee.save
       session[:employee_id] = @employee.id
-      
 			# redirect_to employee_path(@employee)
-			
       respond_to do |format|
         format.html { render 'employees/show', layout: false }
         format.json { render json: @employee }
       end
-      
     else
       render :new
     end
@@ -42,6 +37,7 @@ class EmployeesController < ApplicationController
       #   format.html {render :show, layout: false}
       #   format.json { render json: employee_path(@current_user) }
       # end
+      render json: employee_path(@current_user)
   end
 
 private
