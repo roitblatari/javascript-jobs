@@ -1,4 +1,4 @@
-<h1>Please sign up</h1>
+
 
 <% if @employer.errors.any? %>
  <div id="error_explanation">
@@ -14,8 +14,8 @@
    </ul>
  </div>
 <% end %>
-
-<%= form_for(@employer) do |f|%>
+<%= form_for(@employer, html: {id: :new_employer_form}) do |f|%>
+  <h1>Please sign up</h1>
   <p> name: <%= f.text_field :name %></p>
   <p> email: <%= f.text_field :email %></p>
   <p> password: <%= f.password_field :password  %></p>
