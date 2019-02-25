@@ -4,43 +4,46 @@ class SessionController < ApplicationController
   # binding.pry
   end
 
-  def create
-    if params[:provider] == 'github'
-      #create or find user with github emaila and log them in
-      @employer = Employer.find_or_create_by(email: auth['info']['email'])  do |u|
+  # def create
+  #   if params[:provider] == 'github'
+  #     #create or find user with github emaila and log them in
+  #     @employer = Employer.find_or_create_by(email: auth['info']['email'])  do |u|
 
-        u.name = auth['info']['name']
-        u.email = auth['info']['email']
-        u.password = SecureRandom.hex
-      end
-      # binding.pry
-      session[:employer_id] = @employer.id
-      redirect_to employer_path(@employer)
-      # # render 'welcome/home'
-    #    respond_to do |f|
-    #   f.html { render :index, layout: false }
-    #   f.json { render json: @jobs, status: 201 }
-    # end
-    end
-    # binding.pry
-  end
+  #       u.name = auth['info']['name']
+  #       u.email = auth['info']['email']
+  #       u.password = SecureRandom.hex
+  #     end
+  #     # binding.pry
+  #     session[:employer_id] = @employer.id
+  #     redirect_to employer_path(@employer)
+  #     # # render 'welcome/home'
+  #   #    respond_to do |f|
+  #   #   f.html { render :index, layout: false }
+  #   #   f.json { render json: @jobs, status: 201 }
+  #   # end
+  #   end
+  #   # binding.pry
+  # end
 
 
   def new_employer
-    render :new_employee, layout: false 
+    render :new_employer, layout: false
+    # binding.pry
   end
 
   def new_employee
-    render :new_employee, layout: false 
+    render :new_employee, layout: false
   end
 
   def create_employer
-    # binding.pry
     @employer = Employer.find_by(email: params[:email])
     if @employer != nil && @employer.authenticate(params[:password])
       session[:employer_id] = @employer.id
-      # binding.pry
-      redirect_to employer_path(@employer)
+      respond_to do |format|
+        format.html {render 'employers/show', layout: false}
+        # Binding.pry
+        format.json { render json: @employer }
+       end
     else
       flash[:message] = "Incorrect Email or Password."
       render :new_employer
