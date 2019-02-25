@@ -1,13 +1,17 @@
-
-const jobIndex = () => {
-  // $('a#created-jobs').on("click", function (e) {
-    e.preventDefault()
+$(function () {
+  console.log("app/assets/javascripts/job.js")
+})
+const createdJobIndex = (e) => {
+  $('#created-jobs').on("click", function (e) {
     debugger
+    e.preventDefault()
+   
     $.ajax({
       url: this.href,
       method: 'GET',
       dataType: 'json'
     }).success(function (resp) {// json data arrived    resp is an array
+      clearAppDivId()
       let jobData
       resp.map(j => {// let jobData =  new Job lookup how to map through ALL of resp
         jobData = new Job(j) // jobData is an instance of Job
@@ -16,7 +20,7 @@ const jobIndex = () => {
         $('#app-div-id').append(jobDataHtml)    // append jobDataHtml to the DOM in the div you specified
       })
     })
-  // })
+  })
 }
 
 const upcomingJobs = () => {
@@ -35,24 +39,20 @@ const upcomingJobs = () => {
         jobData = new Job(job);
         let jobDataHtml = jobData.jobHTML()
         $('#app-div-id').append(jobDataHtml) 
-
-
-
-        
       })
     })
   })
 }
 
 const pastJobsIndex = () => {
-  $('#past-jobs-employee').on("click", function (e) {
+  $('#past-jobs').on("click", function (e) {
     e.preventDefault()
-debugger
     $.ajax({
       url: this.href,
       method: 'GET',
       dataType: 'json'
     }).success(function (resp) {// json data arrived    resp is an array
+      clearAppDivId()
       let jobData
       resp.map(j => {
         jobData = new Job(j) // jobData is an instance of Job
@@ -63,7 +63,6 @@ debugger
     })
   })
 }
-
 // define Job class
 class Job {
   constructor(obj) {
