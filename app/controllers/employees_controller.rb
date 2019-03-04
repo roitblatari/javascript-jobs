@@ -33,11 +33,12 @@ class EmployeesController < ApplicationController
     if  current_user != @employee
       redirect_to employee_path(@current_user)
     end
-      # respond_to do |format|
-      #   format.html {render :show, layout: false}
-      #   format.json { render json: employee_path(@current_user) }
-      # end
-      render json: employee_path(@current_user)
+      respond_to do |format|
+        format.html {render :show, layout: false}
+        format.json { render json: @employee }
+      end
+      
+      # render json: employee_path(@current_user)
   end
 
 private
