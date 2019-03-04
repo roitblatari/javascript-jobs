@@ -1,9 +1,9 @@
 $(function () {
   console.log("app/assets/javascripts/job.js")
 })
-const createdJobIndex = (e) => {
+var createdJobIndex = () => {
   $('#created-jobs').on("click", function (e) {
-    debugger
+    // debugger
     e.preventDefault()
    
     $.ajax({
