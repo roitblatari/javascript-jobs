@@ -8,7 +8,7 @@ gem 'active_model_serializers'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'sqlite3', '~> 1.3.6'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -42,7 +42,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'bootstrap', '~> 4.1.3'
 
-gem 'dotenv-rails'
+# gem 'dotenv-rails'
 gem 'omniauth'
 # gem 'omniauth-facebook'
 gem 'omniauth-github'
