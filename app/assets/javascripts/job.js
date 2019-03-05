@@ -5,7 +5,7 @@ var createdJobIndex = () => {
   $('#created-jobs').on("click", function (e) {
     // debugger
     e.preventDefault()
-   
+
     $.ajax({
       url: this.href,
       method: 'GET',
@@ -15,7 +15,7 @@ var createdJobIndex = () => {
       let jobData
       resp.map(j => {// let jobData =  new Job lookup how to map through ALL of resp
         jobData = new Job(j) // jobData is an instance of Job
-        // jobData.jobHTML() // call .jobHTML() on the instance of Job (jobData) to create the html string that we can append to the DOM 
+        // jobData.jobHTML() // call .jobHTML() on the instance of Job (jobData) to create the html string that we can append to the DOM
         let jobDataHtml = jobData.jobHTML()
         $('#app-div-id').append(jobDataHtml)    // append jobDataHtml to the DOM in the div you specified
       })
@@ -38,7 +38,7 @@ const upcomingJobs = () => {
       response.map(job => {
         jobData = new Job(job);
         let jobDataHtml = jobData.jobHTML()
-        $('#app-div-id').append(jobDataHtml) 
+        $('#app-div-id').append(jobDataHtml)
       })
     })
   })
@@ -56,12 +56,16 @@ const pastJobsIndex = () => {
       let jobData
       resp.map(j => {
         jobData = new Job(j) // jobData is an instance of Job
-        // jobData.jobHTML() // call .jobHTML() on the instance of Job (jobData) to create the html string that we can append to the DOM 
+        // jobData.jobHTML() // call .jobHTML() on the instance of Job (jobData) to create the html string that we can append to the DOM
         let jobDataHtml = jobData.jobHTML()
         $('#app-div-id').append(jobDataHtml)    // append jobDataHtml to the DOM in the div you specified
       })
     })
   })
+}
+
+function clearAppDivId() {
+  $('div#app-div-id').html("")
 }
 // define Job class
 class Job {
@@ -73,9 +77,9 @@ class Job {
     // this.date = obj.date.toDateString() 
   }
   // static newJobForm(){
-  //   return (` 
-    
-    
+  //   return (`
+
+
   //   `)
   // }
 
@@ -85,14 +89,9 @@ class Job {
 Job.prototype.jobHTML = function () {
 
   return (`
-    <div>${this.title}</div>
+    <h1>${this.title}</h1>
     <p> ${this.address}</p>
     <p> ${this.state}</p>
     <p> ${this.date}</p>
   `)
-}
-
-
-function clearAppDivId() {
-  $('div#app-div-id').html("")
 }

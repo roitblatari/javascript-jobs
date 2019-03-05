@@ -1,5 +1,5 @@
 $(function () {
-  // clearAppDiv() 
+  // clearAppDiv()
   console.log("app/assets/javascripts/index.js")
   employeeLoginForm();
   employeeNewForm();
@@ -13,8 +13,6 @@ $(function () {
 })
 
 const home = (e) => {
-  // $('a#home').on("click", function (e) {
-  // debugger
   e.preventDefault()
   // debugger
   $.ajax({
@@ -32,78 +30,10 @@ const home = (e) => {
   })
   // })
 }
-// //////////////// Employer /////////////////////
-// // 
 
-// const employerLoginForm = () => {
-//   $('#employer-login').on("click", (e) => {
-//     e.preventDefault()
-//     // debugger
-//     clearWelcome()
-//     $.ajax({
-//       url: 'http://0.0.0.0:3000/signin_employer',
-//       method: 'GET',
-//       dataType: 'html'
-//     }).success(function (response) {
-//       $('div#app-div-id').html(response); // debugger
-//       submitEmployerLoginForm()
-//     })
-//   })
-// }
-
-// const submitEmployerLoginForm = () => {
-//   $('form#new_session_form').on("submit", function (e) {
-//     // debugger
-//     e.preventDefault()
-
-//     $.ajax({
-//       type: "POST",
-//       data: $(this).serialize(),
-//       dataType: 'json',
-//       url: this.action //'session/create_employer'
-//     }).success(function (response) {
-//       // debugger
-//       let employer = new Employer(response)
-//       let employerHtml = employer.employerHTML()
-//       deleteLoginEmployerForm()
-//       $('div#employer-div-id').html(employerHtml)
-//       // pastJobsIndex()
-//       // upcomingJobs()
-//     }).error(function (a, err) {
-//       // debugger
-//       // console.log("err:" , err)
-//     })
-//   })
-// }
-
-
-// class Employer {
-//   constructor(obj) {
-//     this.name = obj.name;
-//     this.email = obj.email;
-//     this.id = obj.id;
-//   }
-// }
-
-// Employer.prototype.employerHTML = function () {
-//   return (`
-//     <div class='employer-show'>
-//       <p>id: ${this.id}</p>
-//       <h3>${this.name}</h3>
-//       <p> ${this.email}</p>
-//       <button type="button" class="btn btn-light">
-//       <a id="past-jobs-employer" href="/employers/${this.id}/jobs/past_jobs">Past Jobs</a>
-//       </button>
-//       <button type="button" class="btn btn-light">
-//         <a id="upcoming-jobs" href="/employers/${this.id}/jobs/upcoming_jobs"  >Upcoming Jobs</a>
-//       </button>
-//     </div>
-
-//   `)
-// }
 
 // //////////////// Employee /////////////////////
-// 
+//
 const employeeLoginForm = () => {
   $('#employee-login').on("click", (e) => {
     e.preventDefault()
@@ -138,10 +68,11 @@ const submitEmployeeLoginForm = () => {
       $('div#employee-div-id').html(employeeHtml)
       pastJobsIndex()
       upcomingJobs()
-    }).error(function (a, err) {
+    })
+    // .error(function (a, err) {
       // debugger
       // console.log("err:" , err)
-    })
+    // })
   })
 }
 
@@ -238,19 +169,19 @@ Employee.prototype.employeeHTML = function () {
 		<h3>${this.name}</h3>
     <p> ${this.email}</p>
     <p> ${this.profession}</p>
-   
+
 
     <button type="button" class="btn btn-light">
-    <a id="past-jobs" href="/employees/${this.id}/jobs/past_jobs">Past Jobs</a> 
-   
+    <a id="past-jobs" href="/employees/${this.id}/jobs/past_jobs">Past Jobs</a>
+
     </button>
     <button type="button" class="btn btn-light">
       <a id="upcoming-jobs" href="/employees/${this.id}/jobs/upcoming_jobs"  >Upcoming Jobs</a>
     </button>
 
 
-    
+
     </div>
-    
+
   `)
 }
