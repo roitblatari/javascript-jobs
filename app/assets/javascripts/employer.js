@@ -39,6 +39,7 @@ const submitEmployerLoginForm = () => {
       deleteLoginForm()
       $('div#employer-div-id').html(employerHtml)
       // debugger
+      newJobForm()
       response.jobs.map(j => {
         jobData = new Job(j) // jobData is an instance of Job
         // jobData.jobHTML() // call .jobHTML() on the instance of Job (jobData) to create the html string that we can append to the DOM 
@@ -47,6 +48,9 @@ const submitEmployerLoginForm = () => {
       })
       // pastJobsIndex()
       createdJobIndex()
+     
+      // $('#create-job').on("click",  () => { newJobForm(e)})
+      // $('#create-job').on("clicke")
     }).error(function (a, err) {
       // debugger
       console.log("err:" , err)
@@ -60,51 +64,6 @@ function deleteLoginForm() {
 function deleteNewEmployerForm() {
   $('#new_employer_form').html("")
 }
-// const submitEmployerNewForm = (e) => {
-//   $('form#new_employer_form').on("submit", function (e) {
-//     e.preventDefault()
-//     // debugger
-//     $.ajax({
-//       type: "POST",
-//       data: $(this).serialize(),
-//       dataType: 'json',
-//       url: this.action
-//     }).success(function (response) {
-
-//       let employer = new Employer(response)
-//       let employerHtml = employer.employerHTML()
-//       deleteNewEmployerForm()
-//       $('div#employer-div-id').html(employerHtml)
-
-//       $('a#created-jobs').on('click', (e) => jobIndex());
-
-
-//     })
-//   })
-// }
-// const employerNewForm = () => {
-//   $('span#new_employer').on("click", function (e) {
-//     e.preventDefault()
-//     // debugger
-
-//     $.ajax({
-//       url: 'http://0.0.0.0:3000/employers/new',
-//       method: 'GET',
-//       dataType: 'html'
-//     }).success(function (response) {
-//       $('div#app-div-id').html(response)
-
-//     })
-//   })
-// }
-
-
-
-//:???????????????????????????????????????????????????????????
-// when employerLoginForm &&  submitEmployerNewForm
-//  is  defined it breaks it breaks the code
-// of employeeLoginForm &&  submitEmployeeNewForm
-//:???????????????????????????????????????????????????????????
 
 
 var employerNewForm = () => {
@@ -151,22 +110,22 @@ class Employer {
     this.id = obj.id;
   }
 }
-
+// id = "create-job" href = "/employers/${this.id}/jobs/new"
 Employer.prototype.employerHTML = function () {
   return (`
     <div class='employer-show'>
-    <p>id: ${this.id}</p>
+    <p>id: <span id="employer-id">${this.id}</span></p>
 		<h3>${this.name}</h3>
     <p> ${this.email}</p>
 
 
 
-    <button type="button" class="btn btn-light">
-    <a id="past-jobs-employer" href="/employers/${this.id}/jobs/past_jobs">Past Jobs</a>
+    <button id="create-job" type="button"  class="btn btn-light">
+    <a href="/employers/${this.id}/jobs/new">Create a Job</a>
 
     </button>
-    <button type="button" class="btn btn-light">
-      <a id="upcoming-jobs" href="/employers/${this.id}/jobs/upcoming_jobs"  >Upcoming Jobs</a>
+    <button id="upcoming-jobs" type="button" class="btn btn-light">
+      <a>  Upcoming Jobs</a>
     </button>
    
     <h2>Below are the jobs you created</h2>
