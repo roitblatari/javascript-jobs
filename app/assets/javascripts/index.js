@@ -25,6 +25,8 @@ const home = (e) => {
     // debugger
     upcomingJobs();
     // jobIndex()
+    
+    newJobForm()
     createdJobIndex()
     // $('#created-jobs').on("click", e => upcomingJobs(e) )
   })
