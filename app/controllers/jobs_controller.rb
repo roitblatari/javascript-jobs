@@ -3,7 +3,7 @@ class JobsController < ApplicationController
   def new
     @employer = Employer.find_by(id: params[:employer_id])
     @job = Job.new
-    # binding.pry
+    render :new, layout: false
   end
 
   def create
@@ -11,7 +11,14 @@ class JobsController < ApplicationController
     @job = Job.new(job_params)
     @job.employer = @employer
     if @job.save
-      redirect_to employer_job_path(@employer, @job)
+      # redirect_to employer_job_path(@employer, @job)
+      # # # /////////////////
+      respond_to do |format|
+      #   format.html { render employer_job_path(@employer, @job), layout: false }
+        format.json { render json: @job }
+      # #   # render json: post.to_json(only: [:title, :description, :id],
+      # #   #                       include: [ author: { only: [:name]}])
+      end
     else
       render :new
     end
