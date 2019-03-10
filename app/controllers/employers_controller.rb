@@ -40,6 +40,10 @@ class EmployersController < ApplicationController
     if  current_user != @employer
         redirect_to employer_path(@current_user)
     end
+    respond_to do |format|
+        format.html { render 'employers/show', layout: false }
+        format.json { render json: @employer }
+      end
   
   end
 
