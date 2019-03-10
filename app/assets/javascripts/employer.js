@@ -1,11 +1,11 @@
 $(function () {
   console.log("app/assets/javascripts/employer.js")
-  employerLoginForm();
   // 
-  employerNewForm();
+  // 
+  // setupEmployerNewLink();
 })
 
-const employerLoginForm = () => {
+const setupEmployerLoginLink = () => {
   $('#employer-login').on("click", (e) => {
     e.preventDefault()
     // debugger
@@ -46,14 +46,10 @@ const submitEmployerLoginForm = () => {
         let jobDataHtml = jobData.jobHTML()
         $('#jobs-div-id').append(jobDataHtml)    // append jobDataHtml to the DOM in the div you specified
       })
-      // pastJobsIndex()
       createdJobIndex()
-     
-      // $('#create-job').on("click",  () => { newJobForm(e)})
-      // $('#create-job').on("clicke")
     }).error(function (a, err) {
       // debugger
-      console.log("err:" , err)
+      console.error("err:" , err)
     })
   })
 }
@@ -61,12 +57,12 @@ const submitEmployerLoginForm = () => {
 function deleteLoginForm() {
   $('#new_session_form').html("")
 }
+
 function deleteNewEmployerForm() {
   $('#new_employer_form').html("")
 }
 
-
-var employerNewForm = () => {
+var setupEmployerNewLink = () => {
   $('a#new_employer').on("click", function (e) {
     e.preventDefault()
 
@@ -96,12 +92,11 @@ const submitEmployerNewForm = (e) => {
       let employerHtml = employer.employerHTML()
       deleteNewEmployerForm()
       $('div#employer-div-id').html(employerHtml)
-      
-      // $('div#employer-div-id').innerHTML = employerHtml 
+      newJobForm()
+
     })
   })
 }
-
 
 class Employer {
   constructor(obj) {
@@ -114,21 +109,17 @@ class Employer {
 Employer.prototype.employerHTML = function () {
   return (`
     <div class='employer-show'>
-    <p>id: <span id="employer-id">${this.id}</span></p>
-		<h3>${this.name}</h3>
-    <p> ${this.email}</p>
-
-
-
-    <button id="create-job" type="button"  class="btn btn-light">
-    <a href="/employers/${this.id}/jobs/new">Create a Job</a>
-
-    </button>
-    <button id="upcoming-jobs" type="button" class="btn btn-light">
-      <a>  Upcoming Jobs</a>
-    </button>
-   
-    <h2>Below are the jobs you created</h2>
+      <p>id: <span id="employer-id">${this.id}</span></p>
+      <h3>${this.name}</h3>
+      <p> ${this.email}</p>
+      
+      <button id="create-job" type="button"  class="btn btn-light">
+        <a href="/employers/${this.id}/jobs/new">Create a Job</a>
+      </button>
+      <button id="upcoming-jobs" type="button" class="btn btn-light">
+        <a>  Upcoming Jobs</a>
+      </button>
+      <h2>Below are the jobs you created</h2>
     </div>
 
   `)
