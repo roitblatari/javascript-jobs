@@ -2,6 +2,6 @@
 <p><%= @employer.email %></p>
 <%= @employer.id %><br>
 
-<%= link_to 'Create a Job', new_employer_job_path(@employer), class: "btn btn-info" %>
+<%= link_to 'Create a Job', new_employer_job_path(@employer), id: "create-job" ,class: "btn btn-info" %>
 <!-- # new_employer_jobs_path to = employer/:id/jobs -->
 <%= link_to "Your Created Jobs" ,  my_created_jobs_employer_jobs_path(@employer),id: "created-jobs", class: "btn btn-info"%>
