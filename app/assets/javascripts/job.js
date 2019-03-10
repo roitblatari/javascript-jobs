@@ -85,7 +85,7 @@ function submitNewJobForm() {
   $('#new_job').submit( function(e) {
     e.preventDefault()
     // alert("submitNewJobForm")
-    debugger
+    // debugger
     $.ajax({
       type: "POST",
       data: $(this).serialize(),
