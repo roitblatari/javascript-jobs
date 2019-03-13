@@ -40,6 +40,7 @@ const submitEmployerLoginForm = () => {
       $('div#employer-div-id').html(employerHtml)
       // debugger
       newJobForm()
+      abcJobList()
       response.jobs.map(j => {
         jobData = new Job(j) // jobData is an instance of Job
         // jobData.jobHTML() // call .jobHTML() on the instance of Job (jobData) to create the html string that we can append to the DOM 
@@ -118,6 +119,10 @@ Employer.prototype.employerHTML = function () {
       </button>
       <button id="upcoming-jobs" type="button" class="btn btn-light">
         <a>  Upcoming Jobs</a>
+      </button>
+
+      <button id="abc_jobs" href="/employers/${this.id}/jobs/my_created_jobs" type="button" class="btn btn-light">
+        <p> jobs in alphab. </p>
       </button>
       <h2>Below are the jobs you created</h2>
     </div>
