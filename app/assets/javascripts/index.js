@@ -21,7 +21,7 @@ const home = (e) => {
     let employer = new Employer(response)
     let employerHtml = employer.employerHTML()
     $('div#employer-div-id').html(employerHtml)
-    
+    abcJobList()
     newJobForm()
     response.jobs.map(j => {
       jobData = new Job(j) // jobData is an instance of Job
@@ -30,17 +30,24 @@ const home = (e) => {
       $('#jobs-div-id').append(jobDataHtml)    // append jobDataHtml to the DOM in the div you specified
     })
   })
+} 
 
-}
 function clearWelcome() {
   $('div#the-welcome-page').html("")
 }
+
 function clearAppDivId() {
   $('div#app-div-id').html("")
 }
+
+function clearJobDivId() {
+  $('#jobs-div-id').html("")
+}
+
 function deleteNewEmployeeForm() {
   $('#new_employee_form').html("")
 }
+
 function deleteLoginEmployeeForm() {
   $('#new_session_form').html("")
 }
