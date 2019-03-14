@@ -1,6 +1,5 @@
 $(function () {
   console.log("app/assets/javascripts/job.js")
-  // newJobForm()
 })
 var createdJobIndex = () => {
   $('#created-jobs').on("click", function (e) {
@@ -19,6 +18,41 @@ var createdJobIndex = () => {
         // jobData.jobHTML() // call .jobHTML() on the instance of Job (jobData) to create the html string that we can append to the DOM
         let jobDataHtml = jobData.jobHTML()
         $('#app-div-id').append(jobDataHtml)    // append jobDataHtml to the DOM in the div you specified
+      })
+    })
+  })
+}
+function sortNames(response) {
+  let jobs = response.sort(function (a, b) {
+    let titleA = a.title.toUpperCase(); // ignore upper and lowercase
+    let titleB = b.title.toUpperCase(); 
+    if (titleA < titleB) {
+      return -1;
+    }
+    if (titleA > titleB) {
+      return 1;
+    }
+    // names must be equal
+    return 0;
+  })
+  return jobs
+}
+
+function abcJobList() {
+  $('#abc_jobs').on("click",function (e) {
+  e.preventDefault()
+  // debugger
+    $.ajax({
+      url: this.attributes.href.value,
+      method: "GET",
+      dataType: 'json'
+    }).success(function(response){
+      clearJobDivId() 
+      const sortedNames = sortNames(response)
+      sortedNames.forEach(j => {
+        let jobData = new Job(j) 
+        let jobDataHtml = jobData.jobHTML()
+        $('#jobs-div-id').append(jobDataHtml)
       })
     })
   })
